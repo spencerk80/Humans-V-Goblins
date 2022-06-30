@@ -89,10 +89,12 @@ public class Map {
         if( ! regenerateMap && pointWanted == MapPoint.TREE) {
             throw new PathBlockedException("Player ran into a tree");
         } else if( ! regenerateMap && pointWanted == MapPoint.ENEMY) {
+            map[spaceWanted[VERT]][spaceWanted[HRZTL]] = MapPoint.LAND;
             updatePlayerPos(spaceWanted, false);
 
             return PromptFactory.getCombatPrompt();
         } else if( ! regenerateMap && pointWanted == MapPoint.CHEST) {
+            map[spaceWanted[VERT]][spaceWanted[HRZTL]] = MapPoint.LAND;
             updatePlayerPos(spaceWanted, false);
 
             return PromptFactory.getAcquireTreasurePrompt();
