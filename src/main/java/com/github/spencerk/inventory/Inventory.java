@@ -17,7 +17,7 @@ public class Inventory {
     }
 
     public void addItem(Item item) throws ItemCountExceededException {
-        AtomicReference<InventoryItemRecord> record = null;
+        AtomicReference<InventoryItemRecord> record = new AtomicReference<>();
 
         inventory.forEach(entry -> {
             if(entry.getItemName() == item.toString()) {
@@ -34,7 +34,7 @@ public class Inventory {
     }
 
     public Item getItem(String itemName) {
-        AtomicReference<Item> item = null;
+        AtomicReference<Item> item = new AtomicReference<>();
 
         inventory.forEach(entry -> {
             if(entry.getItemName().equals(itemName)) {
@@ -56,7 +56,7 @@ public class Inventory {
         return itemList;
     }
 
-    public Inventory getInstance() {
+    public static Inventory getInstance() {
         if(instance == null) instance = new Inventory();
         return instance;
     }
@@ -65,11 +65,9 @@ public class Inventory {
     public String toString() {
         StringBuilder sb = new StringBuilder("");
 
-        sb.append('\n');
         inventory.forEach(entry -> {
             if(entry.getQuantity() > 0) sb.append(entry.toString());
         });
-        sb.append('\n');
 
         return sb.toString();
     }
