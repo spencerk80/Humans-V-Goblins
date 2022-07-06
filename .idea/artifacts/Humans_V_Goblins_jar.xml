@@ -1,0 +1,8 @@
+<component name="ArtifactManager">
+  <artifact type="jar" name="Humans-V-Goblins:jar">
+    <output-path>$PROJECT_DIR$/out/artifacts/Humans_V_Goblins_jar</output-path>
+    <root id="archive" name="Humans-V-Goblins.jar">
+      <element id="module-output" name="Humans-V-Goblins" />
+    </root>
+  </artifact>
+</component>

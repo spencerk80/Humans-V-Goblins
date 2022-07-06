@@ -2,7 +2,7 @@ package com.github.spencerk.inventory;
 
 import com.github.spencerk.exceptions.ItemCountExceededException;
 import com.github.spencerk.models.InventoryItemRecord;
-import com.github.spencerk.models.Potion;
+import com.github.spencerk.items.Potion;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.TestInstance;

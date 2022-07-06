@@ -14,8 +14,6 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 
 @TestInstance(TestInstance.Lifecycle.PER_CLASS)
 public class MapTest {
-    private final static String PLAYER_SYMBOL           = "Θ",
-                                LAND_SYMBOL             = " ";
     private MapPoint[][]            mapLayout;
     private Map                     map         = Map.getInstance();
     private Direction               toLand      = Direction.NORTH,
@@ -140,7 +138,7 @@ public class MapTest {
         }
         mapLine = map.toString().split("\n")[5];
 
-        assertEquals(PLAYER_SYMBOL.charAt(0), mapLine.charAt(13));
+        assertEquals(Map.PLAYER_SYMBOL.charAt(0), mapLine.charAt(13));
     }
 
     @Test
@@ -170,7 +168,7 @@ public class MapTest {
 
         mapLine = map.toString().split("\n")[7];
 
-        assertEquals(PLAYER_SYMBOL.charAt(0), mapLine.charAt(13));
+        assertEquals(Map.PLAYER_SYMBOL.charAt(0), mapLine.charAt(13));
 
         try {
             map.movePlayer(toLand);
@@ -182,7 +180,7 @@ public class MapTest {
         mapLine = map.toString().split("\n")[7];
 
         //Expecting chest to be gone because it would've been opened
-        assertEquals(LAND_SYMBOL.charAt(0), mapLine.charAt(13));
+        assertEquals(Map.LAND_SYMBOL.charAt(0), mapLine.charAt(13));
     }
 
     @Test
@@ -199,7 +197,7 @@ public class MapTest {
 
         mapLine = map.toString().split("\n")[6];
 
-        assertEquals(PLAYER_SYMBOL.charAt(0), mapLine.charAt(12));
+        assertEquals(Map.PLAYER_SYMBOL.charAt(0), mapLine.charAt(12));
 
         try {
             map.movePlayer(toLand);
@@ -211,7 +209,7 @@ public class MapTest {
         mapLine = map.toString().split("\n")[6];
 
         //Enemy should be consumed and gone
-        assertEquals(LAND_SYMBOL.charAt(0), mapLine.charAt(12));
+        assertEquals(Map.LAND_SYMBOL.charAt(0), mapLine.charAt(12));
     }
 
     @Test
@@ -232,6 +230,6 @@ public class MapTest {
         //Test whether player is at the south end now
         mapLine = map.toString().split("\n")[11];
 
-        assertEquals(PLAYER_SYMBOL.charAt(0), mapLine.charAt(13));
+        assertEquals(Map.PLAYER_SYMBOL.charAt(0), mapLine.charAt(13));
     }
 }

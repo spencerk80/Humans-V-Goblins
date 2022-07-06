@@ -1,16 +1,17 @@
 package com.github.spencerk.models;
 
 import com.github.spencerk.exceptions.ItemCountExceededException;
+import com.github.spencerk.items.Item;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class InventoryItemRecord {
 
-    public final static byte MAX_ITEM_QUANTITY  = 20;
+    public final static byte    MAX_ITEM_QUANTITY  = 20;
 
-    private List<Item> items;
-    private String  itemName;
+    private final List<Item>    items;
+    private final String        itemName;
 
     public InventoryItemRecord(Item item) {
         items = new ArrayList<>();

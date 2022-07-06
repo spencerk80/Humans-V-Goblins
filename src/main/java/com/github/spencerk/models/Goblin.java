@@ -4,34 +4,35 @@ import java.util.Random;
 
 public class Goblin {
     private static final Random random              = new Random();
-    private short               health,
-                                maxHealth;
-    private byte                strength,
-                                level;
+    private short               health;
+    private final short         MAX_HEALTH;
+    private final byte          STRENGTH,
+                                LEVEL;
 
-    private Goblin(Player player) {
+    public Goblin(Player player) {
         byte gobStr         = (byte) (player.getStrength() - 2);
 
-        health              = (byte) (player.getHealth() - 5 - random.nextInt(4));
-        maxHealth           = health;
-        strength            = gobStr > 0 ? gobStr : 1;
-        level               = player.getLevel();
+        health              = (byte) (player.getMaxHealth() - 2 - random.nextInt(4));
+        MAX_HEALTH          = health;
+        STRENGTH            = gobStr > 0 ? gobStr : 1;
+        LEVEL               = player.getLevel();
     }
 
     public short getHealth() {
         return health;
     }
+    public short getMaxHealth() { return MAX_HEALTH; }
 
     public byte getStrength() {
-        return strength;
-    }
-
-    public byte getLevel() {
-        return level;
+        return STRENGTH;
     }
 
     public void takeDamage(short dmg) {
         this.health -= dmg;
+    }
+
+    public int getExpWorth() {
+        return (int) (2 + Math.floor(LEVEL * 2.2));
     }
 
     @Override
@@ -39,7 +40,7 @@ public class Goblin {
         return String.format(
                 "Goblin wielding a spear and looking around with wild eyes. Current health: %d/%d",
                 health,
-                maxHealth
+                MAX_HEALTH
         );
     }
 }

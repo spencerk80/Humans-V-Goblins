@@ -23,7 +23,7 @@ public class Player {
         expNeededToLevel    = 20;
     }
 
-    public Player getInstnace() {
+    public static Player getInstance() {
         if(player == null) player = new Player();
         return player;
     }
@@ -35,6 +35,7 @@ public class Player {
     public short getHealth() {
         return health;
     }
+    public short getMaxHealth() { return maxHealth; }
 
     public byte getStrength() {
         return strength;
@@ -63,11 +64,19 @@ public class Player {
     public void addExp(int exp) {
         currentExp += exp;
 
-        if(currentExp < expNeededToLevel) {
+        if(currentExp >= expNeededToLevel) {
             currentExp -= expNeededToLevel;
-            expNeededToLevel *= .25;
+            expNeededToLevel *= 1.25;
             levelUp();
         }
+    }
+
+    public void heal(float healPercent) {
+        health += maxHealth * healPercent;
+    }
+
+    public void reset() {
+        player = new Player();
     }
 
     private void levelUp() {
@@ -75,10 +84,17 @@ public class Player {
         //Player heals on level up
         this.health = maxHealth;
         this.strength += random.nextInt(2) + 1;
+        this.level++;
     }
 
     @Override
     public String toString() {
-        return String.format("%s is a level %d warrior. Current health: %d/%d");
+        return String.format(
+                "%s is a level %d warrior. Current health: %d/%d",
+                name,
+                level,
+                health,
+                maxHealth
+                );
     }
 }

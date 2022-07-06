@@ -1,6 +1,7 @@
 package com.github.spencerk.models;
 
 import com.github.spencerk.exceptions.ItemCountExceededException;
+import com.github.spencerk.items.Potion;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.TestInstance;
@@ -12,7 +13,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 public class InventoryItemRecordTest {
 
     private InventoryItemRecord testRecord;
-    private Potion              testPotion;
+    private Potion testPotion;
 
     @BeforeEach
     public void setUpData() {

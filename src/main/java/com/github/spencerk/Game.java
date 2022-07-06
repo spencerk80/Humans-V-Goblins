@@ -1,22 +1,14 @@
 package com.github.spencerk;
 
-import com.github.spencerk.enums.Direction;
-import com.github.spencerk.exceptions.PathBlockedException;
-import com.github.spencerk.map.Map;
+import com.github.spencerk.Prompt.Prompt;
+import com.github.spencerk.Prompt.PromptFactory;
 
 public class Game {
 
     public static void main(String[] args) {
-        Map map = new Map();
+        Prompt prompt = PromptFactory.getWelcomePrompt();
 
-        System.out.println(map.toString());
-        for(int i = 0; i < 15; i++) try {
-            map.movePlayer(Direction.WEST);
-            System.out.println(map.toString());
-        } catch(PathBlockedException pbe) {
-            System.err.println(pbe.getMessage());
-        }
-
+        while(prompt != null) prompt = prompt.run();
     }
 
 }

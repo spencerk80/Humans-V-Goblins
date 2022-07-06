@@ -9,7 +9,7 @@ import com.github.spencerk.exceptions.PathBlockedException;
 import java.util.Random;
 
 public class Map {
-    private final static String LAND_SYMBOL             = " ",
+    public final static String  LAND_SYMBOL             = " ",
                                 PLAYER_SYMBOL           = "Θ",
                                 ENEMY_SYMBOL            = "Ѫ",
                                 TREE_SYMBOL             = "Ψ",
@@ -31,7 +31,7 @@ public class Map {
                                 CHEST_RATIO             = MAP_DIM_HORIZONTAL * 6;
     private static MapPoint[][] map                     = null;
     private static final Random RANDOM                  = new Random();
-    private byte[]              playerPos               = null;
+    private byte[]              playerPos;
     private static Map          instance                = null;
 
     /*----------------------------------------------------------------------------------------------------------------*
@@ -101,7 +101,7 @@ public class Map {
         } else {
             updatePlayerPos(spaceWanted, regenerateMap);
 
-            return PromptFactory.getNavigateMapPrompt();
+            return PromptFactory.getMapPrompt();
         }
 
     }
