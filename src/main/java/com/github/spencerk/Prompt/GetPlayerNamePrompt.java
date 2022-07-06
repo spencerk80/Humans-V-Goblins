@@ -9,11 +9,11 @@ public class GetPlayerNamePrompt implements Prompt {
         String name;
 
         do {
-            System.out.print("Enter your character's name:");
+            System.out.print("Enter your character's name: ");
             name = PromptFactory.getScanner().nextLine().trim();
 
             do {
-                System.out.printf("%s. Are you sure that's your name?(y/n)", name);
+                System.out.printf("%s. Are you sure that's your name?(y/n): ", name);
                 input = PromptFactory.getScanner().nextLine().trim().toLowerCase().charAt(0);
             } while(input != 'y' && input != 'n');
         } while(input != 'y');

@@ -15,17 +15,22 @@ public class CombatPrompt implements Prompt {
     }
     @Override
     public Prompt run() {
-        Goblin  enemy = new Goblin(Player.getInstance());
-
-        Console.clearScreen();
-
-        System.out.printf(
-                "%s came across a goblin! %s is carrying a spear and is poised to fight.\n",
-                Player.getInstance().getName(),
-                random.nextInt(2) == 0 ? "He" : "She"
-        );
+        Goblin  enemy       = new Goblin(Player.getInstance());
+        boolean showDesc    = true;
 
         do {
+            Console.clearScreen();
+
+            if(showDesc) {
+                System.out.printf(
+                        "%s came across a goblin! %s is carrying a spear and is poised to fight.\n",
+                        Player.getInstance().getName(),
+                        random.nextInt(2) == 0 ? "He" : "She"
+                );
+
+                showDesc = false;
+            }
+
             printStats(enemy);
 
             switch(getPlayerAction()) {

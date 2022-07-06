@@ -1,6 +1,7 @@
 package com.github.spencerk.Prompt;
 
 import com.github.spencerk.map.Map;
+import com.github.spencerk.models.Player;
 import com.github.spencerk.util.Console;
 
 public class MapPrompt implements Prompt {
@@ -15,6 +16,12 @@ public class MapPrompt implements Prompt {
                 Map.ENEMY_SYMBOL,
                 Map.TREE_SYMBOL,
                 Map.CHEST_SYMBOL
+        );
+        System.out.printf(
+                "%s current HP is %d/%d\n",
+                Player.getInstance().getName(),
+                Player.getInstance().getHealth(),
+                Player.getInstance().getMaxHealth()
         );
 
         return PromptFactory.getMenuPrompt();

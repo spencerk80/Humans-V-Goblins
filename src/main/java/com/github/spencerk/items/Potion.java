@@ -1,5 +1,6 @@
 package com.github.spencerk.items;
 
+import com.github.spencerk.Prompt.PromptFactory;
 import com.github.spencerk.models.Player;
 
 import java.util.Objects;
@@ -20,6 +21,14 @@ public class Potion implements Item {
     //Returns a % of health to restore
     public void use() {
         Player.getInstance().heal(healPercent);
+        System.out.printf(
+                "%s is at %d/%d HP\n",
+                Player.getInstance().getName(),
+                Player.getInstance().getHealth(),
+                Player.getInstance().getMaxHealth()
+        );
+        System.out.println("Press enter to continue");
+        PromptFactory.getScanner().nextLine();
     }
 
     public float getHealPercent() {
