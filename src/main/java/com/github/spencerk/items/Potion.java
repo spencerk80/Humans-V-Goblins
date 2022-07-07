@@ -1,6 +1,8 @@
 package com.github.spencerk.items;
 
 import com.github.spencerk.Prompt.PromptFactory;
+import com.github.spencerk.exceptions.ItemCountExceededException;
+import com.github.spencerk.inventory.Inventory;
 import com.github.spencerk.models.Player;
 
 import java.util.Objects;
@@ -20,6 +22,16 @@ public class Potion implements Item {
 
     //Returns a % of health to restore
     public void use() {
+        //Don't let player waste a potion if at full health already
+        if(Player.getInstance().getHealth() == Player.getInstance().getMaxHealth()) {
+            //Put the health potion back
+            try { Inventory.getInstance().addItem(this); }
+            catch(ItemCountExceededException icee) {/*This item was just removed. Won't throw*/}
+
+            System.out.printf("%s is at full health already!\n", Player.getInstance().getName());
+            return;
+        }
+
         Player.getInstance().heal(healPercent);
         System.out.printf(
                 "%s is at %d/%d HP\n",

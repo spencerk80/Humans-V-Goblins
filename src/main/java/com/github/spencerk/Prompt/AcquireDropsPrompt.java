@@ -28,6 +28,8 @@ public class AcquireDropsPrompt implements Prompt {
                 );
             }
         }
+        System.out.println("Press enter to continue.");
+        PromptFactory.getScanner().nextLine();
 
         return PromptFactory.getMapPrompt();
     }

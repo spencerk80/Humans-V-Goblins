@@ -3,6 +3,7 @@ package com.github.spencerk.inventory;
 import com.github.spencerk.exceptions.ItemCountExceededException;
 import com.github.spencerk.models.InventoryItemRecord;
 import com.github.spencerk.items.Potion;
+import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.TestInstance;
@@ -40,9 +41,15 @@ public class InventoryTest {
         } catch (ItemCountExceededException e) {/*Not able to happen*/}
     }
 
+    @AfterAll
+    public void resetInventoryForOtherTests() {
+        Inventory.getInstance().reset();
+    }
+
     @Test
     public void addItem() {
-        assertEquals("potion: 01\n", testInventory.toString());
+        //A potion is added before each test. The inventory starts with 3, total 4.
+        assertEquals("potion: 04\n", testInventory.toString());
         assertEquals("[potion]", testInventory.getItemList().toString());
     }
 
@@ -51,6 +58,7 @@ public class InventoryTest {
         Field inventoryStoreField;
         List<InventoryItemRecord> inventoryStore = null;
 
+        //Get access to the underlying list of inventory item records to test its size
         try{
             inventoryStoreField = Inventory.class.getDeclaredField("inventory");
             inventoryStoreField.setAccessible(true);
@@ -59,6 +67,12 @@ public class InventoryTest {
             System.err.println("Error: Could not access underlying list of Inventory for testing!");
         }
 
+        //Pop the 3 automatically-started-with potions
+        testInventory.getItem(testPotion.toString());
+        testInventory.getItem(testPotion.toString());
+        testInventory.getItem(testPotion.toString());
+
+        //4th potion is the test potion added during test reset
         assertEquals(testPotion, testInventory.getItem(testPotion.toString()));
         assertEquals(0, testInventory.getItemList().size());
         //The inventory keeps the record object. The record object says there are 0 potions
@@ -67,6 +81,10 @@ public class InventoryTest {
 
     @Test
     public void tryRetrieveOnceTooMany() {
+        //Inventory starts with 4 potions during this test
+        testInventory.getItem(testPotion.toString());
+        testInventory.getItem(testPotion.toString());
+        testInventory.getItem(testPotion.toString());
         testInventory.getItem(testPotion.toString());
 
         assertEquals(null, testInventory.getItem(testPotion.toString()));

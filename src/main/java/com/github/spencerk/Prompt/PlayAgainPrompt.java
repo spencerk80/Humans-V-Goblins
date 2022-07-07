@@ -7,13 +7,15 @@ import com.github.spencerk.util.Console;
 public class PlayAgainPrompt implements Prompt {
     @Override
     public Prompt run() {
-        char input;
+        char    input;
+        String  inputStr;
 
         Console.clearScreen();
 
         do {
             System.out.println("Would you like to play again?");
-            input = PromptFactory.getScanner().nextLine().trim().toLowerCase().charAt(0);
+            inputStr = PromptFactory.getScanner().nextLine().trim().toLowerCase();
+            input = "".equals(inputStr) ? 0 : inputStr.charAt(0); //Set char to null terminator if string empty
         } while(input != 'y' && input != 'n');
 
         if(input == 'y') {

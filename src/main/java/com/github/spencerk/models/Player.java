@@ -73,6 +73,7 @@ public class Player {
 
     public void heal(float healPercent) {
         health += maxHealth * healPercent;
+        if(health > maxHealth) health = maxHealth;
     }
 
     public void reset() {

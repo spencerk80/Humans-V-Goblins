@@ -9,6 +9,7 @@ public class MenuPrompt implements Prompt {
     @Override
     public Prompt run() {
         char input;
+        String inputStr;
 
         //Loops if player runs into a tree, otherwise, a return statement will be hit
         while(true) {
@@ -16,7 +17,8 @@ public class MenuPrompt implements Prompt {
                 System.out.print("Enter a command. N - go north. S - go south. E - go east. W - go west. ");
                 System.out.println("I - open inventory");
 
-                input = PromptFactory.getScanner().nextLine().trim().toLowerCase().charAt(0);
+                inputStr = PromptFactory.getScanner().nextLine().trim().toLowerCase();
+                input = "".equals(inputStr) ? 0 : inputStr.charAt(0); //Set char to null terminator if string empty
             } while (input != 'n' && input != 's' && input != 'w' && input != 'e' && input != 'i');
 
             try {

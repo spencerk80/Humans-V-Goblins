@@ -39,6 +39,9 @@ public class CombatPrompt implements Prompt {
                     break;
                 case 'i':
                     PromptFactory.getInventoryPrompt().run();
+                    break;
+                case 128: //Used for unit testing. User cannot possibly enter this
+                    return null;
             }
         } while(enemy.getHealth() > 0 && Player.getInstance().getHealth() > 0);
 
@@ -54,12 +57,15 @@ public class CombatPrompt implements Prompt {
     }
 
     private char getPlayerAction() {
-        char input;
+        String  inputStr;
+        char    input;
 
         do {
             System.out.println("A - attack. I - access inventory");
-            input = PromptFactory.getScanner().nextLine().trim().toLowerCase().charAt(0);
-        } while(input != 'a' && input != 'i');
+            inputStr = PromptFactory.getScanner().nextLine().trim().toLowerCase();
+            input = "".equals(inputStr) ? 0 : inputStr.charAt(0); //Set char to null terminator if string empty
+
+        } while(input != 'a' && input != 'i' && input != 128);
 
         return input;
     }
@@ -86,7 +92,7 @@ public class CombatPrompt implements Prompt {
                 System.out.printf("%s misses...\n", Player.getInstance().getName());
                 break;
             case 19: //Crit!
-                System.out.println("%s lands a critical hit\n!");
+                System.out.printf("%s lands a critical hit!\n", Player.getInstance().getName());
                 isCritHit = true;
                 //fallthrough to default
             default:
@@ -117,7 +123,7 @@ public class CombatPrompt implements Prompt {
 
                 switch(random.nextInt(20)) {
                     case 0: //miss
-                        System.out.println("The goblin misses.");
+                        System.out.println("The goblin misses...");
                         break;
                     case 19: //Crit!
                         System.out.println("The goblin strikes a critical hit!");
