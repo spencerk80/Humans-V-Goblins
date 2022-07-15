@@ -14,7 +14,6 @@ public class Potion implements Item {
     public static final float   MIN_HEAL    = 0.2f,
                                 MAX_HEAL    = 0.4f;
     private final float         healPercent;
-    private final String    ITEM_NAME       = "potion";
 
     public Potion() {
         healPercent = MIN_HEAL + random.nextFloat() * (MAX_HEAL - MIN_HEAL);
@@ -64,10 +63,7 @@ public class Potion implements Item {
 
     @Override
     public String toString() {
-        return ITEM_NAME;
+        return"potion";
     }
 
-    public String getItemName() {
-        return ITEM_NAME;
-    }
 }

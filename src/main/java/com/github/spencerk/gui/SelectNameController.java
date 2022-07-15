@@ -1,7 +1,6 @@
 package com.github.spencerk.gui;
 
 import com.github.spencerk.models.Player;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.TextField;
 import javafx.scene.input.KeyCode;
@@ -12,7 +11,7 @@ public class SelectNameController {
     @FXML
     protected TextField   nameField;
 
-    public void setCharName(ActionEvent event) {
+    public void setCharName() {
         HvGWindow   window      = new HvGWindow();
         String      playerName  = nameField.getText().trim();
 
@@ -22,7 +21,7 @@ public class SelectNameController {
     }
 
     public void onEnter(KeyEvent event) {
-        if(event.getCode().equals(KeyCode.ENTER)) setCharName(null);
+        if(event.getCode().equals(KeyCode.ENTER)) setCharName();
     }
 
 }

@@ -5,13 +5,12 @@ import com.github.spencerk.enums.MapPoint;
 import com.github.spencerk.exceptions.PathBlockedException;
 import com.github.spencerk.map.Map;
 import com.github.spencerk.models.Player;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import javafx.scene.input.KeyEvent;
 import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.FlowPane;
 
 import java.util.List;
@@ -35,7 +34,7 @@ public class MapController {
         displayMap();
     }
 
-    public void openInventory(ActionEvent event) {
+    public void openInventory() {
 
     }
 

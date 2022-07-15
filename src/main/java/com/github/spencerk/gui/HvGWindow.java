@@ -23,7 +23,9 @@ public class HvGWindow extends Application {
         window = primaryWindow;
         window.setTitle("Humans Vs Goblins");
         window.setResizable(false);
-        window.setScene(new Scene(FXMLLoader.load(getClass().getResource("/fxml/WelcomeScene.fxml"))));
+        window.setScene(new Scene(
+                FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/fxml/WelcomeScene.fxml")))
+        ));
         window.setWidth(600); //Required to not break the layout
         window.setHeight(480); //Required to not break the layout
         window.show();
