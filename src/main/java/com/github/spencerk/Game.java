@@ -4,10 +4,16 @@ import com.github.spencerk.Prompt.Prompt;
 import com.github.spencerk.Prompt.PromptFactory;
 import com.github.spencerk.gui.HvGWindow;
 
+import java.util.Arrays;
+
 public class Game {
 
     public static void main(String[] args) {
-        runGui(args);
+
+        if(args.length > 0 && args[0].toLowerCase().equals("--cli"))
+            runPrompts();
+        else
+            runGui(args);
     }
 
     private static void runPrompts() {
