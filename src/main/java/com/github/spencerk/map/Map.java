@@ -20,9 +20,9 @@ public class Map {
                                 MAP_FRAME_VERTICAL      = (char) 0x2551,
                                 MAP_FRAME_BOTTOM_RIGHT  = (char) 0x255A,
                                 MAP_FRAME_BOTTOM_LEFT   = (char) 0x255D;
-    private final static byte   MAP_DIM_VERTICAL        = 11,
-                                MAP_DIM_HORIZONTAL      = 25,
-                                PLAYER_START_VERT_POS   = MAP_DIM_VERTICAL / 2,
+    public final static byte    MAP_DIM_VERTICAL        = 11,
+                                MAP_DIM_HORIZONTAL      = 25;
+    private final static byte   PLAYER_START_VERT_POS   = MAP_DIM_VERTICAL / 2,
                                 PLAYER_START_HRZNTL_POS = MAP_DIM_HORIZONTAL / 2,
                                 VERT                    = 0,
                                 HRZTL                   = 1;
@@ -104,6 +104,10 @@ public class Map {
             return PromptFactory.getMapPrompt();
         }
 
+    }
+
+    public MapPoint[][] getMap() {
+        return map;
     }
     /*----------------------------------------------------------------------------------------------------------------*
      * Private methods

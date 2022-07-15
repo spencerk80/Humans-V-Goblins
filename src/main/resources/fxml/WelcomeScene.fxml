@@ -8,7 +8,7 @@
 <?import javafx.scene.text.Font?>
 
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.github.spencerk.gui.welcomeController">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.github.spencerk.gui.WelcomeController">
    <top>
       <Label text="Welcome to Humans V Goblins" textAlignment="CENTER" wrapText="true" BorderPane.alignment="CENTER">
          <font>
@@ -25,7 +25,7 @@
    <center>
       <VBox prefHeight="200.0" prefWidth="100.0" BorderPane.alignment="CENTER">
          <children>
-            <Label text="Your goal is to run around the map and slaying the goblins. Just enter the direction you wish to go to move about. Running into chests gives you an item. Running into an enemy starts combat. If you try to run into a tree, well you cannot occupy the same spot as a tree, so you'll remain where you are. You have an inventory of items you can use, for example, a potion to heal." wrapText="true">
+            <Label text="Your goal is to run around the map and slaying the goblins. Press WASD or the arrow keys to move about. Running into chests gives you an item. Running into an enemy starts combat. If you try to run into a tree, well you cannot occupy the same spot as a tree, so you'll remain where you are. You have an inventory of items you can use, for example, a potion to heal." wrapText="true">
                <VBox.margin>
                   <Insets left="10.0" right="10.0" />
                </VBox.margin>

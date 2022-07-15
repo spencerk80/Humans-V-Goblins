@@ -4,13 +4,13 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 
-public class welcomeController {
+public class WelcomeController {
     @FXML
     private Button continueBtn;
 
     public void handleClick(ActionEvent event) {
         HvGWindow   window = new HvGWindow();
 
-        window.changeScene("/fxml/mapScene.fxml");
+        window.changeScene("/fxml/SelectNameScene.fxml");
     }
 }
