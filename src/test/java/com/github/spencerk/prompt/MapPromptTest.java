@@ -3,9 +3,7 @@ package com.github.spencerk.prompt;
 import com.github.spencerk.Prompt.InventoryPrompt;
 import com.github.spencerk.Prompt.PromptFactory;
 import com.github.spencerk.enums.MapPoint;
-import com.github.spencerk.inventory.Inventory;
 import com.github.spencerk.map.Map;
-import com.github.spencerk.models.Player;
 import org.junit.jupiter.api.*;
 
 import java.io.*;
@@ -190,6 +188,8 @@ public class MapPromptTest {
 
         posAfter = getPlayerPos();
 
+        assert posBefore != null;
+        assert posAfter != null;
         assertEquals(posBefore[VERT] - 1, posAfter[VERT]); //Yes, north descending. It's just how it translates
         assertEquals(posBefore[HRZT], posAfter[HRZT]);
     }
@@ -204,6 +204,8 @@ public class MapPromptTest {
 
         posAfter = getPlayerPos();
 
+        assert posBefore != null;
+        assert posAfter != null;
         assertEquals(posBefore[VERT], posAfter[VERT]);
         assertEquals(posBefore[HRZT] + 1, posAfter[HRZT]);
     }
@@ -218,6 +220,8 @@ public class MapPromptTest {
 
         posAfter = getPlayerPos();
 
+        assert posBefore != null;
+        assert posAfter != null;
         assertEquals(posBefore[VERT], posAfter[VERT]);
         assertEquals(posBefore[HRZT] - 1, posAfter[HRZT]);
     }
@@ -232,6 +236,8 @@ public class MapPromptTest {
 
         posAfter = getPlayerPos();
 
+        assert posBefore != null;
+        assert posAfter != null;
         assertEquals(posBefore[VERT] + 1, posAfter[VERT]); //Yes, south ascending. It's just how it translates
         assertEquals(posBefore[HRZT], posAfter[HRZT]);
     }

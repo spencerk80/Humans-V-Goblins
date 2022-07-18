@@ -11,8 +11,7 @@ import org.junit.jupiter.api.TestInstance;
 import java.lang.reflect.Field;
 import java.util.List;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.*;
 
 @TestInstance(TestInstance.Lifecycle.PER_CLASS)
 public class InventoryTest {
@@ -56,7 +55,7 @@ public class InventoryTest {
     @Test
     public void retrieveItem() {
         Field inventoryStoreField;
-        List<InventoryItemRecord> inventoryStore = null;
+        List inventoryStore = null;
 
         //Get access to the underlying list of inventory item records to test its size
         try{
@@ -76,6 +75,7 @@ public class InventoryTest {
         assertEquals(testPotion, testInventory.getItem(testPotion.toString()));
         assertEquals(0, testInventory.getItemList().size());
         //The inventory keeps the record object. The record object says there are 0 potions
+        assert inventoryStore != null;
         assertEquals(1, inventoryStore.size());
     }
 
@@ -87,7 +87,7 @@ public class InventoryTest {
         testInventory.getItem(testPotion.toString());
         testInventory.getItem(testPotion.toString());
 
-        assertEquals(null, testInventory.getItem(testPotion.toString()));
+        assertNull(testInventory.getItem(testPotion.toString()));
     }
 
     @Test
@@ -100,6 +100,6 @@ public class InventoryTest {
             assertTrue(true);
             return;
         }
-        assertTrue(false);
+        fail();
     }
 }

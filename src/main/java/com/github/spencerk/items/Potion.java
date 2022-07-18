@@ -1,6 +1,5 @@
 package com.github.spencerk.items;
 
-import com.github.spencerk.Prompt.PromptFactory;
 import com.github.spencerk.exceptions.ItemCountExceededException;
 import com.github.spencerk.inventory.Inventory;
 import com.github.spencerk.models.Player;

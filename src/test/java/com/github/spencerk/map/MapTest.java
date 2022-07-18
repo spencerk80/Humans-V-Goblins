@@ -9,17 +9,16 @@ import org.junit.jupiter.api.*;
 
 import java.lang.reflect.Field;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.*;
 
 @TestInstance(TestInstance.Lifecycle.PER_CLASS)
 public class MapTest {
     private MapPoint[][]            mapLayout;
-    private Map                     map         = Map.getInstance();
-    private Direction               toLand      = Direction.NORTH,
-                                    toChest     = Direction.SOUTH,
-                                    toEnemy     = Direction.WEST,
-                                    toTree      = Direction.EAST;
+    private final Map                     map         = Map.getInstance();
+    private final Direction               toLand      = Direction.NORTH;
+    private final Direction toChest     = Direction.SOUTH;
+    private final Direction toEnemy     = Direction.WEST;
+    private final Direction toTree      = Direction.EAST;
 
     @BeforeEach
     public void resetMap() {
@@ -134,7 +133,7 @@ public class MapTest {
             map.movePlayer(toLand);
         } catch(PathBlockedException e) {
             //Should not happen. Player is moving to land
-            assertTrue(false);
+            fail();
         }
         mapLine = map.toString().split("\n")[5];
 
@@ -146,7 +145,7 @@ public class MapTest {
         try {
             map.movePlayer(toTree);
             //Should not reach this
-            assertTrue(false);
+            fail();
         } catch(PathBlockedException e) {
             //Expecting this
             assertTrue(true);
@@ -162,7 +161,7 @@ public class MapTest {
             returnedPrompt = map.movePlayer(toChest);
         } catch(PathBlockedException e) {
             //Should not get this
-            assertTrue(false);
+            fail();
         }
         assertTrue(returnedPrompt instanceof AcquireTreasurePrompt);
 
@@ -174,7 +173,7 @@ public class MapTest {
             map.movePlayer(toLand);
         } catch(PathBlockedException e) {
             //Should not get this
-            assertTrue(false);
+            fail();
         }
 
         mapLine = map.toString().split("\n")[7];
@@ -185,14 +184,13 @@ public class MapTest {
 
     @Test
     public void movePlayerToEnemy() {
-        Prompt returnedPrompt = null;
         String mapLine;
 
         try {
-            returnedPrompt = map.movePlayer(toEnemy);
+            map.movePlayer(toEnemy);
         } catch(PathBlockedException e) {
             //Should not get this
-            assertTrue(false);
+            fail();
         }
 
         mapLine = map.toString().split("\n")[6];
@@ -203,7 +201,7 @@ public class MapTest {
             map.movePlayer(toLand);
         } catch(PathBlockedException e) {
             //Should not get this
-            assertTrue(false);
+            fail();
         }
 
         mapLine = map.toString().split("\n")[6];
@@ -221,11 +219,11 @@ public class MapTest {
             for(byte i = 0; i < 6; i++) map.movePlayer(toLand);
         } catch(PathBlockedException e) {
             //Should not get this
-            assertTrue(false);
+            fail();
         }
 
         //Test whether a new map has been made
-        assertTrue( ! mapsAreEqual(mapLayout, getMapPoints()));
+        assertFalse(mapsAreEqual(mapLayout, getMapPoints()));
 
         //Test whether player is at the south end now
         mapLine = map.toString().split("\n")[11];

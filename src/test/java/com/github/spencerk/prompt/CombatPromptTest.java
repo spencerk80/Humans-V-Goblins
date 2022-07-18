@@ -77,7 +77,7 @@ public class CombatPromptTest {
         PromptFactory.getCombatPrompt().run();
 
         //Inventory has been printed
-        assertEquals("Tivian\'s inventory has: 3 potion. ", TEST_OUT.toString().split("\n")[3]);
+        assertEquals("Tivian's inventory has: 3 potion. ", TEST_OUT.toString().split("\n")[3]);
     }
 
     @Test

@@ -1,7 +1,5 @@
 package com.github.spencerk.gui;
 
-import javafx.event.ActionEvent;
-
 public class WelcomeController {
 
     public void handleClick() {

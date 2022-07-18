@@ -3,15 +3,13 @@ package com.github.spencerk.prompt;
 import com.github.spencerk.Prompt.MapPrompt;
 import com.github.spencerk.Prompt.Prompt;
 import com.github.spencerk.Prompt.PromptFactory;
-import com.github.spencerk.models.Player;
 import org.junit.jupiter.api.*;
 
 import java.io.*;
 import java.lang.reflect.Field;
 import java.util.Scanner;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.*;
 
 @TestInstance(TestInstance.Lifecycle.PER_CLASS)
 public class GetPlayerNamePromptTest {
@@ -95,6 +93,6 @@ public class GetPlayerNamePromptTest {
                 "Kristoffer. Are you sure that's your name?(y/n): ",
                 TEST_OUT.toString().split("\n")[3]
         );
-        assertTrue(returnedPrompt.getClass() == MapPrompt.class);
+        assertSame(returnedPrompt.getClass(), MapPrompt.class);
     }
 }

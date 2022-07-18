@@ -6,8 +6,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.TestInstance;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.*;
 
 @TestInstance(TestInstance.Lifecycle.PER_CLASS)
 public class InventoryItemRecordTest {
@@ -38,7 +37,7 @@ public class InventoryItemRecordTest {
     public void retrieveItemOnceTooMany() {
         testRecord.getItem();
 
-        assertEquals(null, testRecord.getItem());
+        assertNull(testRecord.getItem());
     }
 
     @Test
@@ -53,7 +52,7 @@ public class InventoryItemRecordTest {
             return;
         }
 
-        assertTrue(false);
+        fail();
     }
 
 }
