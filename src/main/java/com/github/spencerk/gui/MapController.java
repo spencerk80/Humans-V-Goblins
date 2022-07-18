@@ -1,8 +1,15 @@
 package com.github.spencerk.gui;
 
+import com.github.spencerk.Prompt.AcquireTreasurePrompt;
+import com.github.spencerk.Prompt.CombatPrompt;
+import com.github.spencerk.Prompt.Prompt;
 import com.github.spencerk.enums.Direction;
 import com.github.spencerk.enums.MapPoint;
+import com.github.spencerk.exceptions.ItemCountExceededException;
 import com.github.spencerk.exceptions.PathBlockedException;
+import com.github.spencerk.inventory.Inventory;
+import com.github.spencerk.items.Item;
+import com.github.spencerk.items.Potion;
 import com.github.spencerk.map.Map;
 import com.github.spencerk.models.Player;
 import javafx.event.ActionEvent;
@@ -11,6 +18,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -64,25 +72,55 @@ public class MapController {
     }
 
     public void handleKeyStroke(KeyEvent event) {
-
-        KeyCode pressedKey = event.getCode();
+        KeyCode pressedKey      = event.getCode();
+        Prompt  returnedPrompt  = null;
 
         try {
             if(pressedKey.equals(KeyCode.UP) || pressedKey.equals(KeyCode.W)) {
-                Map.getInstance().movePlayer(Direction.NORTH);
+                returnedPrompt = Map.getInstance().movePlayer(Direction.NORTH);
                 displayMap();
             } else if(pressedKey.equals(KeyCode.RIGHT) || pressedKey.equals(KeyCode.D)) {
-                Map.getInstance().movePlayer(Direction.EAST);
+                returnedPrompt = Map.getInstance().movePlayer(Direction.EAST);
                 displayMap();
             } else if(pressedKey.equals(KeyCode.DOWN) || pressedKey.equals(KeyCode.S)) {
-                Map.getInstance().movePlayer(Direction.SOUTH);
+                returnedPrompt = Map.getInstance().movePlayer(Direction.SOUTH);
                 displayMap();
             } else if(pressedKey.equals(KeyCode.LEFT) || pressedKey.equals(KeyCode.A)) {
-                Map.getInstance().movePlayer(Direction.WEST);
+                returnedPrompt = Map.getInstance().movePlayer(Direction.WEST);
                 displayMap();
             }
         } catch(PathBlockedException e) {/*For now don't do anything*/}
 
+        if(returnedPrompt != null) loadNextWindow(returnedPrompt);
+    }
+
+    private void loadNextWindow(Prompt indicator) {
+        if(indicator.getClass() == CombatPrompt.class) {
+            HvGWindow window = new HvGWindow();
+
+            window.changeScene("/fxml/BattleScene.fxml");
+        } else if(indicator.getClass() == AcquireTreasurePrompt.class) {
+            Alert alert;
+            Item item = new Potion();
+
+            try {
+                Inventory.getInstance().addItem(item);
+            } catch(ItemCountExceededException e) {
+                alert = new Alert(Alert.AlertType.WARNING);
+
+                //Show if item is left behind
+                alert.setTitle("Item Left Behind");
+                alert.setHeaderText(item.toString());
+                alert.setContentText(String.format("You cannot hold anymore %s", item));
+                alert.show();
+            }
+            //Show if item is taken
+            alert = new Alert(Alert.AlertType.INFORMATION);
+            alert.setTitle("Item Acquired");
+            alert.setHeaderText(item.toString());
+            alert.setContentText(String.format("You've acquired a %s", item));
+            alert.show();
+        }
     }
 
     private void displayMap() {
