@@ -31,15 +31,13 @@ public class Potion implements Item {
         }
 
         Player.getInstance().heal(healPercent);
-        System.out.printf(
+
+        return String.format(
                 "%s is at %d/%d HP\n",
                 Player.getInstance().getName(),
                 Player.getInstance().getHealth(),
                 Player.getInstance().getMaxHealth()
         );
-        System.out.println("Press enter to continue");
-        PromptFactory.getScanner().nextLine();
-        return "";
     }
 
     public float getHealPercent() {

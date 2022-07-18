@@ -12,7 +12,6 @@
 <?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.text.Text?>
 
-
 <BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="450.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.github.spencerk.gui.CombatController">
    <center>
       <FlowPane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
@@ -53,7 +52,7 @@
    <bottom>
       <FlowPane BorderPane.alignment="CENTER">
          <children>
-            <HBox alignment="CENTER_LEFT" prefHeight="50.0" prefWidth="200.0">
+            <HBox alignment="CENTER_LEFT" prefHeight="50.0" prefWidth="190.0">
                <children>
                   <Label text="Player HP:">
                      <HBox.margin>
@@ -63,9 +62,9 @@
                         <Insets left="10.0" />
                      </padding>
                   </Label>
-                  <StackPane prefHeight="50.0" prefWidth="110.0">
+                  <StackPane prefHeight="50.0" prefWidth="100.0">
                      <children>
-                        <ProgressBar fx:id="playerHpBar" prefWidth="110.0" progress="0.0" />
+                        <ProgressBar fx:id="playerHpBar" prefWidth="80.0" progress="0.0" />
                         <Text fx:id="playerHpText" strokeType="OUTSIDE" strokeWidth="0.0" />
                      </children>
                   </StackPane>
@@ -73,19 +72,24 @@
             </HBox>
             <HBox alignment="CENTER" prefHeight="50.0">
                <children>
-                  <Button mnemonicParsing="false" text="Attack">
+                  <Button fx:id="attackBtn" mnemonicParsing="false" onAction="#attack" text="Attack">
                      <HBox.margin>
-                        <Insets bottom="10.0" right="10.0" top="10.0" />
+                        <Insets bottom="10.0" top="10.0" />
                      </HBox.margin>
                   </Button>
-                  <Button mnemonicParsing="false" text="Inventory">
+                  <Label fx:id="battleMsg" text="Fight!">
                      <HBox.margin>
-                        <Insets bottom="10.0" left="10.0" top="10.0" />
+                        <Insets left="5.0" right="5.0" />
+                     </HBox.margin>
+                  </Label>
+                  <Button fx:id="inventoryBtn" mnemonicParsing="false" onAction="#inventory" text="Inventory">
+                     <HBox.margin>
+                        <Insets bottom="10.0" top="10.0" />
                      </HBox.margin>
                   </Button>
                </children>
             </HBox>
-            <HBox alignment="CENTER_RIGHT" prefHeight="50.0" prefWidth="239.0">
+            <HBox alignment="CENTER_RIGHT" prefHeight="50.0" prefWidth="190.0">
                <children>
                   <Label text="Goblin HP:">
                      <HBox.margin>
@@ -94,7 +98,7 @@
                   </Label>
                   <StackPane prefHeight="50.0" prefWidth="110.0">
                      <children>
-                        <ProgressBar fx:id="enemyHpBar" prefWidth="150.0" progress="0.0">
+                        <ProgressBar fx:id="enemyHpBar" prefWidth="90.0" progress="0.0">
                            <padding>
                               <Insets right="10.0" />
                            </padding>

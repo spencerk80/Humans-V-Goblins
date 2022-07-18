@@ -58,7 +58,7 @@ public class Player {
     }
 
     public void takeDamage(short dmg) {
-        this.health -= dmg;
+        this.health = this.health - dmg < 0 ? 0 : (short) (this.health - dmg);
     }
 
     public void addExp(int exp) {

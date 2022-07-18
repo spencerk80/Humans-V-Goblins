@@ -28,7 +28,7 @@ public class Goblin {
     }
 
     public void takeDamage(short dmg) {
-        this.health -= dmg;
+        this.health = this.health - dmg < 0 ? 0 : (short) (this.health - dmg);
     }
 
     public int getExpWorth() {
