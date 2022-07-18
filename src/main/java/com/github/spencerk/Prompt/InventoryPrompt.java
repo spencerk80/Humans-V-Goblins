@@ -32,7 +32,9 @@ public class InventoryPrompt implements Prompt {
         if("exit".equals(playerChoice)) return PromptFactory.getMapPrompt();
 
         item = Inventory.getInstance().getItem(playerChoice);
-        item.use();
+        System.out.println(item.use());
+        System.out.println("\nPress enter to continue...");
+        PromptFactory.getScanner().nextLine();
 
         return PromptFactory.getMapPrompt();
     }

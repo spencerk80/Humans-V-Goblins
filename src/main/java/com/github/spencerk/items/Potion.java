@@ -20,15 +20,14 @@ public class Potion implements Item {
     }
 
     //Returns a % of health to restore
-    public void use() {
+    public String use() {
         //Don't let player waste a potion if at full health already
         if(Player.getInstance().getHealth() == Player.getInstance().getMaxHealth()) {
             //Put the health potion back
             try { Inventory.getInstance().addItem(this); }
             catch(ItemCountExceededException icee) {/*This item was just removed. Won't throw*/}
 
-            System.out.printf("%s is at full health already!\n", Player.getInstance().getName());
-            return;
+            return String.format("%s is at full health already!\n", Player.getInstance().getName());
         }
 
         Player.getInstance().heal(healPercent);
@@ -40,6 +39,7 @@ public class Potion implements Item {
         );
         System.out.println("Press enter to continue");
         PromptFactory.getScanner().nextLine();
+        return "";
     }
 
     public float getHealPercent() {
